@@ -4,13 +4,14 @@ A websocket server who send real time informations about [this bike](https://www
 
 ## Installation
 
-You need Python2 and pip
+You need Python3 and pip
 
 ```bash
 sudo apt-get install libportaudio2
 
-pip install sounddevice
-pip install numpy
+pip3 install websockets
+pip3 install sounddevice
+pip3 install numpy
 ```
 
 ## Usage
@@ -18,11 +19,11 @@ pip install numpy
 ### List devices
 
 ```
-python tbtws.py -l
+python3 tbtws.py -l
 ```
 
 ### Run with a selected device
 
 ```
-python tbtws.py -i 0
+python3 tbtws.py -i 0
 ```

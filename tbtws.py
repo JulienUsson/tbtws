@@ -31,7 +31,7 @@ def print_sound(indata, frames, time, status):
     elif volume_norm == 0 and is_active:
         is_active = False
         rotation += 1
-        print rotation
+        print(rotation)
 
 with sd.InputStream(device=(args.input_device, None), callback=print_sound):
     while True:
