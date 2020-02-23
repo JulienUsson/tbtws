@@ -2,10 +2,19 @@ import time
 import argparse
 import sounddevice as sd
 import numpy as np
+import redis
+import json
 
 
 # __________Constants__________
 BIKE_WHEEL_DIAMETER = 0.622
+
+
+# __________Global vars__________
+redis_client = redis.Redis(host='localhost', port=6379,
+                           db=0, decode_responses=True)
+redis_pubsub = redis_client.pubsub()
+
 
 # __________Arguments parser__________
 parser = argparse.ArgumentParser(add_help=False)
@@ -49,12 +58,17 @@ class bikeRecorder:
             self.last_rotation_date = self.current_date
             message = {"rotation": self.rotation,
                        "distance": self.distance, "speed": self.speed}
-            print(message)
+            redis_client.publish('bike_stat', json.dumps(message))
 
     def run(self):
+        redis_pubsub.subscribe('bike_reset')
         with sd.InputStream(device=(args.input_device, None), callback=self.sound_handler):
             while True:
-                pass
+                message = redis_pubsub.get_message()
+                if message is not None and isinstance(message['data'], str) and message['data'].lower() == 'true':
+                    print('lol')
+                    self.reset()
+                time.sleep(0.1)
 
     def reset(self):
         self.rotation = 0

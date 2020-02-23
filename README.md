@@ -7,7 +7,7 @@ A websocket server who send real time informations about [this bike](https://www
 You need Python3 and pip3
 
 ```bash
-sudo apt-get install libportaudio2
+sudo apt-get install libportaudio2 redis-server
 
 pip3 install -r requirements.txt
 ```
