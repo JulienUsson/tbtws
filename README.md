@@ -4,14 +4,12 @@ A websocket server who send real time informations about [this bike](https://www
 
 ## Installation
 
-You need Python3 and pip
+You need Python3 and pip3
 
 ```bash
 sudo apt-get install libportaudio2
 
-pip3 install websockets
-pip3 install sounddevice
-pip3 install numpy
+pip3 install -r requirements.txt
 ```
 
 ## Usage
