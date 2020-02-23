@@ -1,0 +1,16 @@
+{
+  "name": "training-bike-sender",
+  "version": "1.0.0",
+  "description": "Redis to websocket for training_bike_listener.py",
+  "main": "training_bike_sender.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulienUsson/tbtws.git"
+  },
+  "author": "Julien Usson",
+  "license": "LGPL-3.0-or-later",
+  "dependencies": {
+    "redis": "^3.0.2",
+    "ws": "^7.2.1"
+  }
+}

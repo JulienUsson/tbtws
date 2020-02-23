@@ -4,12 +4,12 @@ A websocket server who send real time informations about [this bike](https://www
 
 ## Installation
 
-You need Python3 and pip3
+You need Python3, pip3 and NodeJS
 
 ```bash
 sudo apt-get install libportaudio2 redis-server
-
 pip3 install -r requirements.txt
+npm install
 ```
 
 ## Usage
@@ -17,11 +17,17 @@ pip3 install -r requirements.txt
 ### List devices
 
 ```
-python3 tbtws.py -l
+python3 training_bike_listener.py -l
 ```
 
-### Run with a selected device
+### Run listener
 
 ```
-python3 tbtws.py -i 0
+python3 training_bike_listener.py -i 0
+```
+
+### Run websocket sender
+
+```
+node training_bike_sender.js
 ```

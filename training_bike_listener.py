@@ -56,9 +56,10 @@ class bikeRecorder:
                 self.speed = BIKE_WHEEL_DIAMETER / \
                     (self.current_date - self.last_rotation_date)
             self.last_rotation_date = self.current_date
-            message = {"rotation": self.rotation,
-                       "distance": self.distance, "speed": self.speed}
-            redis_client.publish('bike_stat', json.dumps(message))
+            message = json.dumps({"rotation": self.rotation,
+                                  "distance": self.distance, "speed": self.speed})
+            redis_client.publish('bike_stat', message)
+            print("Listener: sending " + message)
 
     def run(self):
         redis_pubsub.subscribe('bike_reset')
@@ -66,15 +67,16 @@ class bikeRecorder:
             while True:
                 message = redis_pubsub.get_message()
                 if message is not None and isinstance(message['data'], str) and message['data'].lower() == 'true':
-                    print('lol')
                     self.reset()
                 time.sleep(0.1)
 
     def reset(self):
         self.rotation = 0
         self.distance = 0
+        print("Listener: Resetted")
 
 
 if __name__ == '__main__':
     bike_recorder = bikeRecorder()
+    print("Listener: Started")
     bike_recorder.run()
