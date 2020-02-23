@@ -3,6 +3,7 @@ import argparse
 import sounddevice as sd
 import numpy as np
 
+
 # __________Constants__________
 BIKE_WHEEL_DIAMETER = 0.622
 
@@ -54,6 +55,10 @@ class bikeRecorder:
         with sd.InputStream(device=(args.input_device, None), callback=self.sound_handler):
             while True:
                 pass
+
+    def reset(self):
+        self.rotation = 0
+        self.distance = 0
 
 
 if __name__ == '__main__':
