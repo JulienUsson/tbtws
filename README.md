@@ -4,10 +4,10 @@ A websocket server who send real time informations about [this bike](https://www
 
 ## Installation
 
-You need Python3, pip3 and NodeJS
+You need Python3, pip3 and NodeJS.
 
 ```bash
-sudo apt-get install libportaudio2 redis-server
+sudo apt-get install libportaudio2
 pip3 install -r requirements.txt
 npm install
 ```
@@ -20,14 +20,17 @@ npm install
 python3 training_bike_listener.py -l
 ```
 
-### Run listener
+### Run
 
 ```
-python3 training_bike_listener.py -i 0
+npm run start
 ```
 
-### Run websocket sender
+### Environment variables
+
+You can use a `.env` file to set vars.
 
 ```
-node training_bike_sender.js
+PORT=9000
+INPUT_DEVICE=0
 ```
